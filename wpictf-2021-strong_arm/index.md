@@ -1,7 +1,7 @@
 # Wpictf 2021 Strong_arm
 
 
-文件来源: [strong_arm]([ctf-write-ups/wpictf2021/strong_arm at master · datajerk/ctf-write-ups (github.com)](https://github.com/datajerk/ctf-write-ups/tree/master/wpictf2021/strong_arm))
+文件来源: [strong_arm](https://github.com/datajerk/ctf-write-ups/tree/master/wpictf2021/strong_arm)
 <!--more-->
 ## 环境搭建
 

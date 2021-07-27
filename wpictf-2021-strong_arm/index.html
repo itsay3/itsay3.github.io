@@ -6,17 +6,17 @@
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>Wpictf 2021 Strong_arm - ay3</title><meta name="Description" content="ay3 的个人博客"><meta property="og:title" content="Wpictf 2021 Strong_arm" />
-<meta property="og:description" content="文件来源: [strong_arm](ctf-write-ups/wpictf2021/strong_arm at master · datajerk/ctf-write-ups (github.com))" />
+<meta property="og:description" content="文件来源: strong_arm" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://ay3.io/wpictf-2021-strong_arm/" />
 <meta property="og:image" content="https://ay3.io/logo.png"/>
 <meta property="article:published_time" content="2021-07-28T01:57:54+08:00" />
-<meta property="article:modified_time" content="2021-07-28T01:57:54+08:00" />
+<meta property="article:modified_time" content="2021-07-28T02:08:47+08:00" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://ay3.io/logo.png"/>
 
 <meta name="twitter:title" content="Wpictf 2021 Strong_arm"/>
-<meta name="twitter:description" content="文件来源: [strong_arm](ctf-write-ups/wpictf2021/strong_arm at master · datajerk/ctf-write-ups (github.com))"/>
+<meta name="twitter:description" content="文件来源: strong_arm"/>
 <meta name="application-name" content="ay3">
 <meta name="apple-mobile-web-app-title" content="ay3"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -29,8 +29,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/ay3.io\/wpictf-2021-strong_arm\/"
-        },"image": ["https:\/\/ay3.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "aarch64, pwn, rop","wordcount":  611 ,
-        "url": "https:\/\/ay3.io\/wpictf-2021-strong_arm\/","datePublished": "2021-07-28T01:57:54+08:00","dateModified": "2021-07-28T01:57:54+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["https:\/\/ay3.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "aarch64, pwn, rop","wordcount":  606 ,
+        "url": "https:\/\/ay3.io\/wpictf-2021-strong_arm\/","datePublished": "2021-07-28T01:57:54+08:00","dateModified": "2021-07-28T02:08:47+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "ay3","logo": "https:\/\/ay3.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Wpictf 2021 Strong_arm</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://ay3.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>ay3</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/pwn/"><i class="far fa-folder fa-fw"></i>pwn</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-07-28">2021-07-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 611 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-07-28">2021-07-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 606 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -119,7 +119,7 @@
     <li><a href="#漏洞分析">漏洞分析</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p>文件来源: [strong_arm](<a href="https://github.com/datajerk/ctf-write-ups/tree/master/wpictf2021/strong_arm" target="_blank" rel="noopener noreffer">ctf-write-ups/wpictf2021/strong_arm at master · datajerk/ctf-write-ups (github.com)</a>)</p>
+            </div><div class="content" id="content"><p>文件来源: <a href="https://github.com/datajerk/ctf-write-ups/tree/master/wpictf2021/strong_arm" target="_blank" rel="noopener noreffer">strong_arm</a></p>
 <h2 id="环境搭建">环境搭建</h2>
 <p>安装 <code>qemu-user</code>，<code>libc</code> 和 <code>binutils</code>：</p>
 <div class="highlight"><div class="chroma">
@@ -255,7 +255,8 @@ $ cat gadget <span class="p">|</span> grep <span class="s1">&#39;: ldr x0.*; ldp
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2021-07-28</span>
+                <span>更新于 2021-07-28&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/f9db380f1c1b9d6d79e4a8db7500dfdad7bae398" target="_blank" title="commit by ay3(mail@ay3.io) f9db380f1c1b9d6d79e4a8db7500dfdad7bae398: fix typo">
+                                    <i class="fas fa-hashtag fa-fw"></i>f9db380</a></span>
             </div>
             <div class="post-info-license"></div>
         </div>
