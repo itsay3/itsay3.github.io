@@ -2,12 +2,15 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
+            <loc>https://ay3.io/tags/aarch64/</loc><lastmod>2021-07-28T01:57:54&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://ay3.io/</loc><lastmod>2021-07-28T01:57:54&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://ay3.io/categories/</loc><lastmod>2021-07-28T01:57:54&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://ay3.io/posts/</loc><lastmod>2021-07-28T01:57:54&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://ay3.io/tags/pwn/</loc><lastmod>2021-07-28T01:57:54&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://ay3.io/categories/pwn/</loc><lastmod>2021-07-28T01:57:54&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://ay3.io/tags/rop/</loc><lastmod>2021-07-28T01:57:54&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://ay3.io/tags/</loc><lastmod>2021-07-28T01:57:54&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://ay3.io/wpictf-2021-strong_arm/</loc><lastmod>2021-07-28T01:57:54&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://ay3.io/tags/arm/</loc><lastmod>2021-07-26T00:51:05&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://ay3.io/arm-pwn-shellcode/</loc><lastmod>2021-07-26T00:51:05&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://ay3.io/</loc><lastmod>2021-07-26T00:51:05&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://ay3.io/categories/</loc><lastmod>2021-07-26T00:51:05&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://ay3.io/posts/</loc><lastmod>2021-07-26T00:51:05&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://ay3.io/tags/pwn/</loc><lastmod>2021-07-26T00:51:05&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://ay3.io/categories/pwn/</loc><lastmod>2021-07-26T00:51:05&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://ay3.io/tags/shellcode/</loc><lastmod>2021-07-26T00:51:05&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://ay3.io/tags/</loc><lastmod>2021-07-26T00:51:05&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url></urlset>
+            <loc>https://ay3.io/tags/shellcode/</loc><lastmod>2021-07-26T00:51:05&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url></urlset>

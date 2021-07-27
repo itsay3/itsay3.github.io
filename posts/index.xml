@@ -4,7 +4,14 @@
         <link>https://ay3.io/posts/</link>
         <description>所有文章 | ay3</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@ay3.io (ay3)</managingEditor>
-            <webMaster>mail@ay3.io (ay3)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 26 Jul 2021 00:17:46 &#43;0800</lastBuildDate><atom:link href="https://ay3.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>mail@ay3.io (ay3)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 28 Jul 2021 01:57:54 &#43;0800</lastBuildDate><atom:link href="https://ay3.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Wpictf 2021 Strong_arm</title>
+    <link>https://ay3.io/wpictf-2021-strong_arm/</link>
+    <pubDate>Wed, 28 Jul 2021 01:57:54 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://ay3.io/wpictf-2021-strong_arm/</guid>
+    <description><![CDATA[<p>文件来源: [strong_arm](<a href="https://github.com/datajerk/ctf-write-ups/tree/master/wpictf2021/strong_arm" target="_blank" rel="noopener noreffer">ctf-write-ups/wpictf2021/strong_arm at master · datajerk/ctf-write-ups (github.com)</a>)</p>]]></description>
+</item><item>
     <title>Arm Pwn Shellcode</title>
     <link>https://ay3.io/arm-pwn-shellcode/</link>
     <pubDate>Mon, 26 Jul 2021 00:17:46 &#43;0800</pubDate>
