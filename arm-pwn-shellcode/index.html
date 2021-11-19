@@ -8,10 +8,10 @@
         <title>Arm Pwn Shellcode - ay3</title><meta name="Description" content="ay3 的个人博客"><meta property="og:title" content="Arm Pwn Shellcode" />
 <meta property="og:description" content="之前一直对 Arm pwn 不了解，但 CTF 中 Arm pwn 出现频率还是挺高的。Defcon qual 2021 也有一道比较简单的 Arm pwn。编写 Shellcode 是漏洞利用的基础，因此从它开始入门 Arm pwn。主要参考 wrting arm shellcode, 系统环境是 azeria lab vm 2.0。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://ay3.io/arm-pwn-shellcode/" />
-<meta property="og:image" content="https://ay3.io/logo.png"/>
+<meta property="og:url" content="https://ay3.io/arm-pwn-shellcode/" /><meta property="og:image" content="https://ay3.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-07-26T00:17:46+08:00" />
 <meta property="article:modified_time" content="2021-07-28T02:03:47+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://ay3.io/logo.png"/>
 
@@ -130,7 +130,7 @@
 <p>一般情况下执行 shellcode 的目的是弹出一个shell，即 <code>execve(&quot;/bin/sh&quot;, 0, 0)</code>。32 bit arm 系统调用号通过 r7传递，参数依次保存在 r0 - r6。汇编代码如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -143,7 +143,7 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">.section .text
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">.section .text
 .global _start
 
 _start:
@@ -160,7 +160,7 @@ _start:
 <p>上面的汇编代码经过汇编后得到的机器指令中含有非常多的 null byte，这对 shellcode 来说是非常致命的。因为漏洞函数往往会被 null byte 截断。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -177,7 +177,7 @@ _start:
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ objdump -d execv
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ objdump -d execv
 
 execv:     file format elf32-littlearm
 
@@ -199,7 +199,7 @@ Disassembly of section .text:
 <p>对于指令中的 null byte 可以通过使用 Thumb mode 来去除。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -218,7 +218,7 @@ Disassembly of section .text:
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">.section .text
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">.section .text
 .global _start
 
 _start:
@@ -242,7 +242,7 @@ _start:
 <p>上面的汇编代码得到的机器码是不含 null byte 的，但作为参数的字符串末尾却必须包含一个 null byte。解决方法是先在目标位置存放一个任意非 0 的值，然后在运行时将它置 0。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -261,7 +261,7 @@ _start:
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">.section .text
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">.section .text
 .global _start
 
 _start:
@@ -284,12 +284,12 @@ _start:
 <p>链接时默认 .text 段不可写，而 <code>/bin/sh</code> 在 .text 段中。使用 <code>-N</code> 使其可写。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">ld --help | grep &#39;readonly&#39;
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">ld --help | grep &#39;readonly&#39;
   -N, --omagic                Do not page align data, do not make text readonly
   --no-omagic                 Page align data, make text readonly
 </code></pre></td></tr></table>
@@ -325,7 +325,7 @@ _start:
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://ay3.io" target="_blank">ay3</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
